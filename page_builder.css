@@ -1,18 +1,26 @@
 .pbjs-components {
-  width: 100%;
   padding: 10px;
   background: black;
   color: white;
+  width: 100px;
+  float: left;
+  position: absolute;
+  z-index: 9999;
+  left: 2px;
+  top: 50px;
+  border-radius: 10px;
 }
 
 .pbjs-components .pbjs-component {
-  display: inline-block;
   z-index: 2;
+  min-height: 50px;
+  border-bottom: 2px dotted white;
+  border-top: 2px dotted white;
+  margin: 0 0 10px;
+  padding: 10px;
+  background-color: #1b6d85;
 }
 
-.pbjs-target-container {
-  width: 100%;
-  min-height: 400px;
-  background: darkgray;
-  z-index: 1;
+.pbjs-text-element {
+  min-height: 100px;
 }
