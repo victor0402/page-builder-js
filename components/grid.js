@@ -1,4 +1,4 @@
-var PBJS_Grid = {
+var PBJS_Grid = $.extend({}, PBJS_BaseComponent, {
 
   componentType: 'grid',
 
@@ -16,4 +16,4 @@ var PBJS_Grid = {
 
     return "<div class='pbjs-droped-element pbjs-dropzone " + bootstraoGridClass + " pbjs-text-element'></div>";
   }
-};
+});

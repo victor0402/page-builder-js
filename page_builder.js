@@ -34,7 +34,6 @@ var PageBuilderJS = {};
         target.setAttribute('data-y', y);
       },
       onend: function (event) {
-        console.log(event);
       }
     }).on('move', function (event) {
       var interaction = event.interaction;
@@ -95,6 +94,8 @@ var PageBuilderJS = {};
         var component = COMPONENTS[type];
 
         $(event.target).append(component.exportContent());
+
+        component.afterExport();
 
         $(event.relatedTarget).fadeOut('fast', function () {
           $(this).remove()
