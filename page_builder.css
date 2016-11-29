@@ -1,3 +1,10 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 .pbjs-components {
   padding: 10px;
   background: black;
@@ -23,4 +30,67 @@
 
 .pbjs-text-element {
   min-height: 100px;
+}
+
+.pbjs-target-container {
+  max-width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding-top: 10px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pbjs-dropzone {
+  max-width: 100%;
+  border: dashed 2px #aaa;
+  background: white;
+  min-height: calc(100% - 10px);
+}
+
+.pbjs-drop-active {
+  border: dashed 4px #aaa;
+}
+
+.pbjs-drop-target {
+  background-color: #aaa;
+  border: solid #fff;
+}
+
+.pbjs-droped-element {
+  min-height: 100px;
+}
+
+/*
+ * Responsive target container based on bootstrap's container width
+ * http://getbootstrap.com/css/#grid-options
+*/
+
+/* Extra small devices  */
+@media (max-width: 768px) {
+  .pbjs-target-container {
+    width: 970px;
+  }
+}
+
+/* Small devices  */
+@media (min-width: 768px) {
+  .pbjs-target-container {
+    width: 970px;
+  }
+}
+
+/* Medium devices */
+@media (min-width: 992px) {
+  .pbjs-target-container {
+    width: 970px;
+  }
+}
+
+/* Large devices */
+@media (min-width: 1200px) {
+  .pbjs-target-container {
+    width: 1170px;
+  }
 }

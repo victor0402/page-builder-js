@@ -52,7 +52,7 @@ var PageBuilderJS = {};
       }
     });
 
-    interact('#pbjs-target-container').dropzone({
+    interact('.pbjs-dropzone').dropzone({
       // only accept elements matching this CSS selector
       accept: '.pbjs-component',
       // Require a 75% element overlap for a drop to be possible
@@ -83,36 +83,63 @@ var PageBuilderJS = {};
 
         event.relatedTarget.htmlContent = 'Dropped';
 
-      },
-      ondropdeactivate: function (event) {
-        // remove active dropzone feedback
-        $('.pbjs-dropzone')
-          .removeClass('pbjs-drop-active')
-          .removeClass('pbjs-drop-target');
-
         var type = $(event.relatedTarget).data('type');
+        var componentvalue = $(event.relatedTarget).data('componentvalue');
         var component = COMPONENTS[type];
 
-        $(event.target).append(component.exportContent());
+        $(event.target).append(component.exportContent(componentvalue));
 
         component.afterExport();
 
         $(event.relatedTarget).fadeOut('fast', function () {
           $(this).remove()
         })
+
+      },
+      ondropdeactivate: function (event) {
+        // remove active dropzone feedback
+        $('.pbjs-dropzone')
+          .removeClass('pbjs-drop-active')
+          .removeClass('pbjs-drop-target');
       }
     });
   };
 
   var createSidebarComponents = function (components) {
-    var sideMenu = '<div class="pbjs-components">';
+    var sideMenu = '<div class="nav-side-menu">' +
+      '<div class="menu-list">' +
+      '<ul id="menu-content" class="menu-content">';
+
     $.each(components, function (idx, component) {
       var currentComponent = COMPONENTS[component];
-      sideMenu += '<div class="pbjs-component" data-type="' + currentComponent.componentType + '">' +
-        currentComponent.componentLabel + '<i class="' + currentComponent.componentIcon + '"></i>' +
-        '</div>';
+
+      if (currentComponent.options) {
+        sideMenu += '<li class="pbjs-collapsible">' +
+          '<a href="#">' +
+          '<i class="' + currentComponent.componentIcon + '"></i>' + '<span class="pbjs-menu-text">' + currentComponent.componentLabel + '</span>' +
+          '</a>' +
+          '</li>';
+
+        sideMenu += '<ul class="sub-menu">';
+
+        $.each(currentComponent.options, function (optIndex, optComponent) {
+          sideMenu += '<li class="pbjs-component" data-type="' + currentComponent.componentType + '" data-componentvalue="' + optComponent.value + '">' +
+            '<a href="#">' + optComponent.label + '</a>' +
+            '</li>';
+        });
+
+        sideMenu += '</ul>';
+
+      } else {
+        sideMenu += '<li class="pbjs-component" data-type="' + currentComponent.componentType + '">' +
+          '<a href="#">' +
+          '<i class="' + currentComponent.componentIcon + '"></i>' + '<span class="pbjs-menu-text">' + currentComponent.componentLabel + '</span>' +
+          '</a>' +
+          '</li>';
+      }
+
     });
-    sideMenu += '</div>';
+    sideMenu += '</ul></div></div>';
 
     $('body').append(sideMenu);
   };

@@ -8,6 +8,8 @@ var PBJS_BaseComponent = {
 
   componentIcon: 'fa fa-question',
 
+  options: null,
+
   getNextId: function () {
     return 'pbjs-' + this.componentType + '-' + ++this.currentId;
   },
