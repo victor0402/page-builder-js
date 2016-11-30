@@ -62,6 +62,19 @@ html, body {
   min-height: 100px;
 }
 
+.pbjs-draggable-droped {
+  height: 100px;
+  cursor: move;
+  width: 100%;
+  border: 2px solid grey;
+}
+
+.pbjs-sortable-placeholder {
+  border: 4px dashed dodgerblue;
+  height: 100px;
+  width: 100%;
+}
+
 /*
  * Responsive target container based on bootstrap's container width
  * http://getbootstrap.com/css/#grid-options
